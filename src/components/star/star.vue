@@ -1,16 +1,35 @@
 <template>
-  <div class="star star-24">
-    <span class="star-item on"></span>
-    <span class="star-item on"></span>
-    <span class="star-item on"></span>
-    <span class="star-item half"></span>
-    <span class="star-item off"></span>
+  <div class="star" :class="'star-' + size">
+    <span class="star-item on" v-for="(sc, index) in starClasses"  :key="index" :class="sc"></span>
   </div>
 </template>
 
 <script>
   export default {
-    name: ""
+    props: {
+      size: Number,
+      score: Number
+    },
+    computed: {
+      starClasses() {
+        const {score} = this
+        const scoreInteger = Math.floor(score)
+        const scs = []
+        //向scs添加on
+        for (let i = 0; i < score.length; i++) {
+          scs.push('on')
+        }
+        // 向scs添加half
+        if (score*10-scoreInteger*10 >= 5) {
+           scs.push('half')
+        }
+        //向scs添加off
+        while (scs.length < 5) {
+          scs.push('off')
+        }
+        return scs
+      }
+    }
   }
 </script>
 
@@ -31,11 +50,11 @@
         &:last-child
           margin-right: 0
         &.on
-          bg-image('./images/stars/star48_on')
+          bg-image('./images/star48_on')
         &.half
-          bg-image('./images/stars/star48_half')
+          bg-image('./images/star48_half')
         &.off
-          bg-image('./images/stars/star48_off')
+          bg-image('./images/star48_off')
     &.star-36
       .star-item
         width 15px
@@ -45,11 +64,11 @@
         &:last-child
           margin-right 0
         &.on
-          bg-image('./images/stars/star36_on')
+          bg-image('./images/star36_on')
         &.half
-          bg-image('./images/stars/star36_half')
+          bg-image('./images/star36_half')
         &.off
-          bg-image('./images/stars/star36_off')
+          bg-image('./images/star36_off')
     &.star-24
       .star-item
         width 10px
@@ -59,9 +78,9 @@
         &:last-child
           margin-right 0
         &.on
-          bg-image('./images/stars/star24_on')
+          bg-image('./images/star24_on')
         &.half
-          bg-image('./images/stars/star24_half')
+          bg-image('./images/star24_half')
         &.off
-          bg-image('./images/stars/star24_off')
+          bg-image('./images/star24_off')
 </style>
