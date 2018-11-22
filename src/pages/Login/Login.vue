@@ -42,7 +42,7 @@
               </section>
               <section class="login_message">
                 <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
-                <img ref="captcha" @click="updateCaptcha" class="get_verification" src="./images/captcha.svg" alt="captcha">
+                <img ref="captcha" @click="updateCaptcha" class="get_verification" src="http://localhost:5000/captcha" alt="captcha">
               </section>
             </section>
           </div>
@@ -109,6 +109,7 @@
       //登录
       async login() {
         const {phone, code, name, pwd, captcha, loginWay} = this
+        console.log(name, pwd,captcha);
         let result
         //短信
         if (loginWay) {
@@ -129,8 +130,10 @@
           }else if (!captcha) {
             return MessageBox.alert('必须输入验证码')
           }
+
           // 发登陆的请求
-          result = await reqPwdLogin({phone, pwd, captcha})
+          result = await reqPwdLogin({name, pwd, captcha})
+          console.log(result);
           // 如果失败, 更新图片验证码
           if (result.code !== 0) {
             this.updateCaptcha()

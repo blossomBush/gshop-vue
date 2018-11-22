@@ -14,5 +14,12 @@ export const reqSendCode = (phone) => ajax(API + '/sendcode', {phone})
 //手机号验证登录
 export const reqSmsLogin = (phone, code) => ajax(API + '/login_sms', {phone, code}, 'POST')
 //密码验证登录
-export const reqPwdLogin = ({phone, pwd, captcha}) => ajax(API + '/login_pwd', {phone, pwd, captcha}, 'POST')
-
+export const reqPwdLogin = ({name, pwd, captcha}) => ajax(API + '/login_pwd', {name, pwd, captcha}, 'POST')
+//用户登出
+export const reqLogOut = () => ajax(API + '/logout')
+//获取用户信息
+export const reqUserInfo = () => ajax(API + '/userinfo')
+// 商家详情页路由
+export const reqShopInfo = () => ajax('/info')
+export const reqShopGoods = () => ajax('/goods')
+export const reqShopRating = () => ajax('/ratings')
