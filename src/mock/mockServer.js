@@ -8,8 +8,6 @@ Mock.mock('/info', {code: 0, data: data.info})
 Mock.mock('/ratings', {code: 0, data: data.ratings})
 Mock.mock('/goods', {code: 0, data: data.goods})
 
-console.log('mockserver running')
-// 向外暴露什么?  不需要
 
 
 

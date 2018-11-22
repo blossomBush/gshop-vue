@@ -4,14 +4,20 @@ import {
   reqFoodCategorys,
   reqShops,
   reqLogOut,
-  reqUserInfo
+  reqUserInfo,
+  reqShopGoods,
+  reqShopInfo,
+  reqShopRating
 } from '../api'
 import {
   RECEIVE_ADDRESS,
   RECEIVE_CATEGORYS,
   RECEIVE_SHOPS,
   RECEIVE_USER,
-  RESET_USER
+  RESET_USER,
+  RECEIVE_GOODS,
+  RECEIVE_INFO,
+  RECEIVE_RATINGS
 } from './mutations-type'
 
 export default {
@@ -64,6 +70,15 @@ export default {
       commit(RECEIVE_SHOPS,{shops})
     }
   },
+  //获取当前用户信息的异步action
+  async getShopInfo ({commit}) {
+    const result = await reqUserInfo()
+    if (result.code===0) {
+      const info = result.data
+      commit(RECEIVE_INFO , {info})
+    }
+  },
+
 }
 
 

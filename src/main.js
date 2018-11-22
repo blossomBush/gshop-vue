@@ -10,6 +10,8 @@ import store from './store'
 //注册全局组件
 Vue.component('TopHeader', TopHeader)
 Vue.component(Button.name, Button)
+
+import  './mock/mockServer'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
